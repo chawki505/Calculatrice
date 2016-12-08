@@ -139,13 +139,17 @@ public class Controller implements Initializable {
             if (number1 == 0) {
                 number1 = Double.parseDouble(nbs);
                 nbs = "";
-                afficheResulta.setText(String.valueOf(number1));
+                if ((number1 - (int) number1 != 0)) {
+                    afficheResulta.setText(String.valueOf(number1));
+                } else afficheResulta.setText(String.valueOf((int) number1));
             } else {
                 number2 = Double.parseDouble(nbs);
                 nbs = "";
-                resulta = calcule(number1, number2, operateur);
 
-                afficheResulta.setText(String.valueOf(resulta));
+                resulta = calcule(number1, number2, operateur);
+                if ((resulta - (int) resulta != 0)) {
+                    afficheResulta.setText(String.valueOf(resulta));
+                } else afficheResulta.setText(String.valueOf((int) resulta));
             }
         } catch (Exception e) {
             messageAlert(event);
