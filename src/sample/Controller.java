@@ -80,6 +80,7 @@ public class Controller implements Initializable {
     @FXML
     /*methode pour le bouton reset*/
     private void setReset() {
+        this.afficheEgale.setVisible(false);
         this.afficheResulta.setText("");
         this.operation.setText("");
         this.number1 = 0;
@@ -93,6 +94,7 @@ public class Controller implements Initializable {
     @FXML
     /*methode pour capturer les chiffre des bouton */
     private void proccessNumber(ActionEvent event) {
+        this.afficheEgale.setVisible(true);
         String val = ((Button) event.getSource()).getText();
         nbs = nbs + val;
         afficheResulta.setText(nbs);
@@ -121,6 +123,7 @@ public class Controller implements Initializable {
                 number1 = resulta;
 
                 afficheResulta.setText(String.valueOf(resulta));
+
                 operateur = val;
                 operation.setText(operation.getText() + operateur);
 
@@ -136,6 +139,7 @@ public class Controller implements Initializable {
     /*methode pour calculer et afficher le resulta de la derniere operation*/
     private void prossesEgal(ActionEvent event) {
         try {
+
             if (number1 == 0) {
                 number1 = Double.parseDouble(nbs);
                 nbs = "";
@@ -162,10 +166,11 @@ public class Controller implements Initializable {
     private void messageAlert(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("ERROR");
-        if (((Button) event.getSource()).getText().equals("=")) {
+        if (((Button) event.getSource()).getText().equals("=") || resulta == 0) {
             alert.setHeaderText("No calcule");
             alert.setContentText("Please set operation");
         } else {
+
             alert.setHeaderText("No reset");
             alert.setContentText("Please reset calculator");
         }
